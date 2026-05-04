@@ -4,6 +4,12 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Rhino Billiard School · Школа більярду в Києві</title>
+  <script>
+    (function(){
+      var p = window.location.search.match(/[?&]p=([^&]*)/);
+      if (p) history.replaceState(null, null, '/' + decodeURIComponent(p[1]));
+    })();
+  </script>
   <script type="module" crossorigin src="/rhino-billiard-school_v2/assets/index-Du_uMOBR.js"></script>
   <link rel="stylesheet" crossorigin href="/rhino-billiard-school_v2/assets/index-ByRpvri1.css">
 </head>
