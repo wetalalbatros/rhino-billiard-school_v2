@@ -29,7 +29,7 @@ export function Coach() {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, padding: '20px 0', borderTop: '1px solid var(--line-soft)', borderBottom: '1px solid var(--line-soft)' }}>
               {[
-                { n: '20+', l: 'років тренує' },
+                { n: '23+', l: 'років тренує' },
                 { n: '16', l: 'майстрів спорту' },
                 { n: '1000+', l: 'учнів' },
               ].map((s, i) => (
