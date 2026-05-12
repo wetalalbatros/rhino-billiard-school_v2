@@ -4,10 +4,11 @@
   <meta charset="utf-8"/>
   <script>
     var l = window.location;
+    var base = l.pathname.split('/').slice(0, 2).join('/');
+    var rest = l.pathname.slice(base.length) || '/';
     l.replace(
       l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 2).join('/') +
-      '/?p=' + encodeURIComponent(l.pathname.slice(1) + l.search) +
+      base + '/?p=' + encodeURIComponent(rest.slice(1) + l.search) +
       (l.hash || '')
     );
   </script>
