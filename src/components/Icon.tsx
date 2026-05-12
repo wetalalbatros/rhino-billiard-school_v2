@@ -25,6 +25,14 @@ export const Icon = {
       <text x="18" y="22" textAnchor="middle" fontFamily="Bricolage Grotesque" fontWeight="700" fontSize="13" fill="currentColor">8</text>
     </svg>
   ),
+  Snooker: (p: IconProps) => (
+    <svg viewBox="0 0 36 36" fill="none" {...p}>
+      <circle cx="18" cy="18" r="17" stroke="currentColor" strokeWidth="1.4"/>
+      <circle cx="18" cy="13.5" r="4" fill="currentColor" opacity=".85"/>
+      <circle cx="13.5" cy="21" r="4" fill="currentColor" opacity=".85"/>
+      <circle cx="22.5" cy="21" r="4" fill="currentColor" opacity=".85"/>
+    </svg>
+  ),
 };
 
 export function useReveal() {

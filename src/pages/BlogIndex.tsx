@@ -39,12 +39,12 @@ export default function BlogIndex() {
           <div className="container-x">
             <div data-anim="fade-up" style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'flex-end', gap: 40, marginBottom: 24, flexWrap: 'wrap' }}>
               <div>
-                <span className="eyebrow">журнал школи rhino</span>
+                <span className="eyebrow">блог · корисні матеріали</span>
                 <h1 className="display display-xl" style={{ marginTop: 18, marginBottom: 16 }}>
-                  Все, що варто знати<br/>про <span style={{ color: 'var(--felt-2)', fontStyle: 'italic' }}>гру</span>.
+                  Корисно про<br/><span style={{ color: 'var(--felt-2)', fontStyle: 'italic' }}>більярд</span>.
                 </h1>
                 <p className="lede" style={{ fontSize: 18 }}>
-                  Авторські статті та відео-уроки від Валерія Ковтуна. Те, що ми розповідаємо учням на заняттях — тепер у відкритому доступі.
+                  Збірка статей і відео для тих, хто хоче розібратися в грі — від техніки удару до психології змагань.
                 </p>
               </div>
               <div style={{ display: 'inline-flex', padding: 4, background: 'var(--surface)', border: '1px solid var(--line-soft)', borderRadius: 999 }}>
@@ -119,8 +119,9 @@ export default function BlogIndex() {
             <div className="container-x">
               <div data-anim="fade-up" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 18 }}>
                 {BLOG_VIDEOS.map((v) => (
-                  <a key={v.id} href="#" className="card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                    <div className="placeholder-img" style={{ aspectRatio: '16/9', position: 'relative' }}>
+                  <a key={v.id} href={`https://www.youtube.com/watch?v=${v.youtubeId}`} target="_blank" rel="noreferrer" className="card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                    <div style={{ aspectRatio: '16/9', position: 'relative', overflow: 'hidden' }}>
+                      <img src={`https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`} alt={v.t} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
                       <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div style={{ width: 72, height: 72, borderRadius: 999, background: 'oklch(0 0 0 / 0.6)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.18)', color: '#fff' }}>
                           <Icon.Play style={{ width: 26, height: 26, transform: 'translateX(2px)' }}/>

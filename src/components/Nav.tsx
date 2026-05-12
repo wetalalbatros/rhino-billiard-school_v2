@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from './Icon';
 
 type Props = { onBook: () => void };
@@ -24,7 +25,11 @@ export function Nav({ onBook }: Props) {
           <span>Rhino<span style={{ color: 'var(--ink-3)', fontWeight: 400 }}>·school</span></span>
         </a>
         <div className="nav-links">
-          {NAV_LINKS.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
+          {NAV_LINKS.map(([href, label]) =>
+            href.includes('#')
+              ? <a key={href} href={href}>{label}</a>
+              : <Link key={href} to={href}>{label}</Link>
+          )}
         </div>
         <div className="nav-cta">
           <a href="https://t.me/billiard_rhino_school" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm" style={{ padding: 10 }} title="Telegram"><Icon.Tg/></a>
@@ -47,9 +52,11 @@ export function Nav({ onBook }: Props) {
 
       {menuOpen && (
         <div className="nav-mobile-menu">
-          {NAV_LINKS.map(([href, label]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
-          ))}
+          {NAV_LINKS.map(([href, label]) =>
+            href.includes('#')
+              ? <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
+              : <Link key={href} to={href} onClick={() => setMenuOpen(false)}>{label}</Link>
+          )}
           <button
             className="btn btn-felt"
             style={{ marginTop: 8, width: '100%', justifyContent: 'center' }}

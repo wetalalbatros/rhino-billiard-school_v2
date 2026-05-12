@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from './Icon';
 
 type Props = { onBook: () => void };
@@ -86,7 +87,7 @@ export function Contact({ onBook }: Props) {
   const [active, setActive] = useState(0);
   const locs = [
     {
-      name: "Rhino", sub: "X park", showLogo: true, bookable: true,
+      name: "Rhino", sub: "X park", icon: "logo" as const, bookable: true,
       tag: "Xpark", coords: "50.4979° N · 30.5469° E",
       mapsLink: "https://maps.app.goo.gl/xBvPu7u91r6JtG3dA",
       mapEmbed: "https://maps.google.com/maps?q=50.4979361,30.5469284&hl=uk&z=17&output=embed",
@@ -100,7 +101,7 @@ export function Contact({ onBook }: Props) {
       ],
     },
     {
-      name: "Billiard", sub: "News Club", showLogo: true, bookable: false,
+      name: "Billiard", sub: "News Club", icon: "snooker" as const, bookable: false,
       tag: "Snooker", coords: "50.5174° N · 30.4640° E",
       mapsLink: "https://maps.app.goo.gl/JL4QYXkmHUsRLutg6",
       mapEmbed: "https://maps.google.com/maps?q=50.5174121,30.4639913&hl=uk&z=17&output=embed",
@@ -113,7 +114,7 @@ export function Contact({ onBook }: Props) {
       ],
     },
     {
-      name: "Mercury", sub: "Billiard Club", showLogo: false, bookable: false,
+      name: "Mercury", sub: "Billiard Club", icon: null, bookable: false,
       tag: "Mercury", coords: "50.4684° N · 30.6368° E",
       mapsLink: "https://maps.app.goo.gl/DR96N7yKSVmRMW9KA",
       mapEmbed: "https://maps.google.com/maps?q=50.4684327,30.6368482&hl=uk&z=17&output=embed",
@@ -142,7 +143,8 @@ export function Contact({ onBook }: Props) {
                   minWidth: 80, flex: 1, color: active === i ? 'var(--felt-2)' : 'var(--ink-3)',
                   transition: 'background .2s, color .2s',
                 }}>
-                  {l.showLogo && <Icon.Logo style={{ width: 26, height: 26, color: active === i ? 'var(--felt-2)' : 'var(--ink-4)' } as React.CSSProperties}/>}
+                  {l.icon === "logo" && <img src={`${import.meta.env.BASE_URL}rhino.jpg`} alt="Rhino" style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover', opacity: active === i ? 1 : 0.45 }}/>}
+                  {l.icon === "snooker" && <img src={`${import.meta.env.BASE_URL}snooker.jpg`} alt="Snooker" style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover', opacity: active === i ? 1 : 0.45 }}/>}
                   <span style={{ fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.5 }}>{l.name}<br/>{l.sub}</span>
                 </button>
               ))}
@@ -232,7 +234,7 @@ export function Footer() {
             <a href="/#pricing">Ціни</a>
             <a href="/#coach">Тренер</a>
             <a href="/#schedule">Розклад</a>
-            <a href="/blog">Блог та відео</a>
+            <Link to="/blog">Блог та відео</Link>
           </div>
           <div>
             <h5>Школа</h5>
