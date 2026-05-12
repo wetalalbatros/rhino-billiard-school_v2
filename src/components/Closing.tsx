@@ -100,13 +100,16 @@ export function Contact({ onBook }: Props) {
       ],
     },
     {
-      name: "Billiard", sub: "News Club", showLogo: false, bookable: false,
+      name: "Billiard", sub: "News Club", showLogo: true, bookable: false,
       tag: "Snooker", coords: "50.5174° N · 30.4640° E",
       mapsLink: "https://maps.app.goo.gl/JL4QYXkmHUsRLutg6",
       mapEmbed: "https://maps.google.com/maps?q=50.5174121,30.4639913&hl=uk&z=17&output=embed",
       heading: <>Snooker Club<br/>Billiard News Club · Київ.</>,
       rows: [
-        { i: <Icon.Map/>, t: "Клуб", v: "Snooker Club · Billiard News Club\nКиїв", href: undefined as string | undefined },
+        { i: <Icon.Map/>, t: "Адреса", v: "вул. Полярна, 8\nКиїв, 04201", href: undefined as string | undefined },
+        { i: <Icon.Phone/>, t: "Телефон", v: "+38 093 183 66 33", href: "tel:+380931836633" },
+        { i: <Icon.Clock/>, t: "Графік", v: "Щодня · 11:00 – 23:00", href: undefined as string | undefined },
+        { i: <Icon.Tg/>, t: "Telegram", v: "@BNsnooker", href: "https://t.me/BNsnooker" },
       ],
     },
     {
