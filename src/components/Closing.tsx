@@ -51,7 +51,7 @@ export function Reviews() {
 export function FAQ() {
   const items = [
     { q: 'Чи потрібен досвід для початку?', a: 'Ні. Ми приймаємо учнів з повного нуля — більшість починає, ніколи не тримавши кий професійно. Перше пробне заняття допоможе тренеру оцінити ваш рівень і скласти план.' },
-    { q: 'Яке спорядження потрібно мати?', a: 'Жодного. Кії, крейда, столи Brunswick — все надається школою. Якщо згодом захочете свій кий — Валерій допоможе підібрати під вашу стійку та хват.' },
+    { q: 'Яке спорядження потрібно мати?', a: 'Жодного. Кії, крейда, столи — все надається школою. Якщо згодом захочете свій кий — Валерій допоможе підібрати під вашу стійку та хват.' },
     { q: 'Скільки часу до перших результатів?', a: 'Перший контрольований удар — на 1-му занятті. Перша серія з 2-3 куль — 4–6 занять. Турнірний рівень — від 6 місяців регулярних тренувань.' },
     { q: 'Чи займаються діти?', a: 'Так, з 8 років. Для дітей ми складаємо індивідуальну програму з акцентом на координацію, концентрацію та ігровий формат. Це й гра, і дисципліна.' },
     { q: 'Де саме знаходиться школа?', a: 'Xpark, парк Дружби Народів, вул. Юр’ївська 29, Київ. 5 хв пішки від ст. м. «Лівобережна», є безкоштовний паркінг.' },
@@ -83,48 +83,97 @@ export function FAQ() {
 }
 
 export function Contact({ onBook }: Props) {
+  const [active, setActive] = useState(0);
+  const locs = [
+    {
+      name: ‘Rhino’, sub: ‘X park’, showLogo: true, bookable: true,
+      tag: ‘Xpark’, coords: ‘50.4979° N · 30.5469° E’,
+      mapsLink: ‘https://maps.app.goo.gl/xBvPu7u91r6JtG3dA’,
+      mapEmbed: ‘https://maps.google.com/maps?q=50.4979361,30.5469284&hl=uk&z=17&output=embed’,
+      heading: <>Xpark · парк Дружби<br/>Народів · Юр’ївська 29.</>,
+      rows: [
+        { i: <Icon.Map/>, t: ‘Адреса’, v: "вул. Юр’ївська, 29\nXpark, Парк Дружби Народів\nКиїв, 02000", href: undefined as string | undefined },
+        { i: <Icon.Phone/>, t: ‘Телефон’, v: ‘+38 063 434 96 23’, href: ‘tel:+380634349623’ },
+        { i: <Icon.Clock/>, t: ‘Графік’, v: ‘Щодня · 10:00 – 22:00\nБез вихідних та святкових’, href: undefined },
+        { i: <Icon.IG/>, t: ‘Instagram’, v: ‘@billiard_rhino_school’, href: ‘https://www.instagram.com/billiard_rhino_school/’ },
+        { i: <Icon.Tg/>, t: ‘Telegram’, v: ‘@billiard_rhino_school’, href: ‘https://t.me/billiard_rhino_school’ },
+      ],
+    },
+    {
+      name: ‘Billiard’, sub: ‘News Club’, showLogo: false, bookable: false,
+      tag: ‘Snooker’, coords: ‘50.5174° N · 30.4640° E’,
+      mapsLink: ‘https://maps.app.goo.gl/JL4QYXkmHUsRLutg6’,
+      mapEmbed: ‘https://maps.google.com/maps?q=50.5174121,30.4639913&hl=uk&z=17&output=embed’,
+      heading: <>Snooker Club<br/>Billiard News Club · Київ.</>,
+      rows: [
+        { i: <Icon.Map/>, t: ‘Клуб’, v: "Snooker Club · Billiard News Club\nКиїв", href: undefined as string | undefined },
+      ],
+    },
+    {
+      name: ‘Mercury’, sub: ‘Billiard Club’, showLogo: false, bookable: false,
+      tag: ‘Mercury’, coords: ‘50.4684° N · 30.6368° E’,
+      mapsLink: ‘https://maps.app.goo.gl/DR96N7yKSVmRMW9KA’,
+      mapEmbed: ‘https://maps.google.com/maps?q=50.4684327,30.6368482&hl=uk&z=17&output=embed’,
+      heading: <>Більярдний клуб<br/>Mercury · Київ.</>,
+      rows: [
+        { i: <Icon.Map/>, t: ‘Клуб’, v: "Більярдний клуб ‘Mercury’\nКиїв", href: undefined as string | undefined },
+      ],
+    },
+  ];
+  const loc = locs[active];
   return (
-    <section className="section" id="contact" style={{ background: 'var(--bg-2)' }}>
+    <section className="section" id="contact" style={{ background: ‘var(--bg-2)’ }}>
       <div className="container-x">
         <div data-anim="fade-up" style={{ marginBottom: 48 }}>
-          <span className="eyebrow">локація · київ</span>
-          <h2 className="display display-lg" style={{ marginTop: 16 }}>Xpark · парк Дружби<br/>Народів · Юр’ївська 29.</h2>
+          <span className="eyebrow">локації · київ</span>
+          <h2 className="display display-lg" style={{ marginTop: 16 }}>{loc.heading}</h2>
         </div>
         <div className="contact-grid" data-anim="fade-up">
-          <div className="card card-pad" style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-            {[
-              { i: <Icon.Map/>, t: 'Адреса', v: 'вул. Юр’ївська, 29\nXpark, Парк Дружби Народів\nКиїв, 02000', href: undefined as string | undefined },
-              { i: <Icon.Phone/>, t: 'Телефон', v: '+38 063 434 96 23', href: 'tel:+380634349623' },
-              { i: <Icon.Clock/>, t: 'Графік', v: 'Щодня · 10:00 – 22:00\nБез вихідних та святкових', href: undefined },
-              { i: <Icon.IG/>, t: 'Instagram', v: '@billiard_rhino_school', href: 'https://www.instagram.com/billiard_rhino_school/' },
-              { i: <Icon.Tg/>, t: 'Telegram', v: '@billiard_rhino_school', href: 'https://t.me/billiard_rhino_school' },
-            ].map((r, i) => (
-              <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start', paddingBottom: 22, borderBottom: i < 4 ? '1px solid var(--line-soft)' : '0' }}>
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'oklch(0.55 0.12 155 / 0.12)', color: 'var(--felt-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{r.i}</div>
-                <div>
-                  <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 4 }}>{r.t}</div>
-                  {r.href ? (
-                    <a href={r.href} target={r.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" style={{ color: 'var(--ink)', fontSize: 17, textDecoration: 'none', whiteSpace: 'pre-line', fontWeight: 500 }}>{r.v}</a>
-                  ) : (
-                    <div style={{ color: 'var(--ink)', fontSize: 17, whiteSpace: 'pre-line', lineHeight: 1.5, fontWeight: 500 }}>{r.v}</div>
-                  )}
+          <div className="card" style={{ display: ‘flex’, overflow: ‘hidden’, padding: 0 }}>
+            <div style={{ borderRight: ‘1px solid var(--line-soft)’, display: ‘flex’, flexDirection: ‘column’ }}>
+              {locs.map((l, i) => (
+                <button key={i} onClick={() => setActive(i)} style={{
+                  padding: ‘20px 14px’, background: active === i ? ‘oklch(0.55 0.12 155 / 0.12)’ : ‘transparent’,
+                  border: 0, borderBottom: i < locs.length - 1 ? ‘1px solid var(--line-soft)’ : ‘0’,
+                  cursor: ‘pointer’, display: ‘flex’, flexDirection: ‘column’, alignItems: ‘center’, gap: 8,
+                  minWidth: 80, flex: 1, color: active === i ? ‘var(--felt-2)’ : ‘var(--ink-3)’,
+                  transition: ‘background .2s, color .2s’,
+                }}>
+                  {l.showLogo && <Icon.Logo style={{ width: 26, height: 26, color: active === i ? ‘var(--felt-2)’ : ‘var(--ink-4)’ } as React.CSSProperties}/>}
+                  <span style={{ fontFamily: ‘var(--f-mono)’, fontSize: 9, letterSpacing: ‘0.1em’, textTransform: ‘uppercase’, textAlign: ‘center’, lineHeight: 1.5 }}>{l.name}<br/>{l.sub}</span>
+                </button>
+              ))}
+            </div>
+            <div style={{ flex: 1, padding: ‘32px’, display: ‘flex’, flexDirection: ‘column’, gap: 22 }}>
+              {loc.rows.map((r, i) => (
+                <div key={i} style={{ display: ‘flex’, gap: 16, alignItems: ‘flex-start’, paddingBottom: 22, borderBottom: i < loc.rows.length - 1 ? ‘1px solid var(--line-soft)’ : ‘0’ }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: ‘oklch(0.55 0.12 155 / 0.12)’, color: ‘var(--felt-2)’, display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, flexShrink: 0 }}>{r.i}</div>
+                  <div>
+                    <div style={{ fontFamily: ‘var(--f-mono)’, fontSize: 11, letterSpacing: ‘0.16em’, textTransform: ‘uppercase’, color: ‘var(--ink-3)’, marginBottom: 4 }}>{r.t}</div>
+                    {r.href ? (
+                      <a href={r.href} target={r.href.startsWith(‘http’) ? ‘_blank’ : undefined} rel="noreferrer" style={{ color: ‘var(--ink)’, fontSize: 17, textDecoration: ‘none’, whiteSpace: ‘pre-line’, fontWeight: 500 }}>{r.v}</a>
+                    ) : (
+                      <div style={{ color: ‘var(--ink)’, fontSize: 17, whiteSpace: ‘pre-line’, lineHeight: 1.5, fontWeight: 500 }}>{r.v}</div>
+                    )}
+                  </div>
                 </div>
+              ))}
+              <div style={{ display: ‘flex’, gap: 10, flexWrap: ‘wrap’, marginTop: ‘auto’ }}>
+                {loc.bookable && <button className="btn btn-felt" onClick={onBook} style={{ flex: 1 }}>Записатись <Icon.Arrow/></button>}
+                <a href={loc.mapsLink} target="_blank" rel="noreferrer" className="btn btn-ghost"><Icon.Map/> Maps</a>
               </div>
-            ))}
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 'auto' }}>
-              <button className="btn btn-felt" onClick={onBook} style={{ flex: 1 }}>Записатись <Icon.Arrow/></button>
-              <a href="https://maps.app.goo.gl/xBvPu7u91r6JtG3dA" target="_blank" rel="noreferrer" className="btn btn-ghost"><Icon.Map/> Maps</a>
             </div>
           </div>
-          <div style={{ borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--line-soft)', minHeight: 480, position: 'relative', background: 'var(--surface)' }}>
+          <div style={{ borderRadius: ‘var(--r-lg)’, overflow: ‘hidden’, border: ‘1px solid var(--line-soft)’, minHeight: 480, position: ‘relative’, background: ‘var(--surface)’ }}>
             <iframe
-              src="https://maps.google.com/maps?q=50.4979361,30.5469284&hl=uk&z=17&output=embed"
-              style={{ border: 0, width: '100%', height: '100%', minHeight: 480, filter: 'invert(0.92) hue-rotate(180deg) saturate(0.7) brightness(0.95)' }}
-              loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Rhino Billiard School"
+              key={active}
+              src={loc.mapEmbed}
+              style={{ border: 0, width: ‘100%’, height: ‘100%’, minHeight: 480, filter: ‘invert(0.92) hue-rotate(180deg) saturate(0.7) brightness(0.95)’ }}
+              loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={loc.name}
             />
-            <div style={{ position: 'absolute', top: 16, left: 16, right: 16, display: 'flex', justifyContent: 'space-between' }}>
-              <span className="tape">50.4979° N · 30.5469° E</span>
-              <span className="tape tape-brass">Xpark</span>
+            <div style={{ position: ‘absolute’, top: 16, left: 16, right: 16, display: ‘flex’, justifyContent: ‘space-between’ }}>
+              <span className="tape">{loc.coords}</span>
+              <span className="tape tape-brass">{loc.tag}</span>
             </div>
           </div>
         </div>
@@ -167,7 +216,7 @@ export function Footer() {
               <span style={{ fontFamily: 'var(--f-display)', fontWeight: 700, fontSize: 20, letterSpacing: '-0.02em' }}>Rhino<span style={{ color: 'var(--ink-3)', fontWeight: 400 }}>·school</span></span>
             </div>
             <p style={{ color: 'var(--ink-3)', maxWidth: 320, lineHeight: 1.55, fontSize: 14 }}>
-              Школа більярду в Києві. Авторська методика, столи Brunswick, тренер — майстер спорту.
+              Школа більярду в Києві. Авторська методика, тренер — майстер спорту України.
             </p>
             <div style={{ display: 'flex', gap: 8, marginTop: 18 }}>
               <a href="https://www.instagram.com/billiard_rhino_school/" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm" style={{ padding: 10 }}><Icon.IG/></a>
