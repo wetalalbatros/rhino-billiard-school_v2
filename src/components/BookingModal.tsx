@@ -35,6 +35,7 @@ export function BookingModal({ open, onClose, prefillWhen }: Props) {
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<{ name?: boolean; phone?: boolean }>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  const [honeypot, setHoneypot] = useState('');
   const phoneRef = useRef<HTMLInputElement>(null);
 
   // Keep cursor at end of phone input after every re-render while focused
@@ -95,6 +96,8 @@ export function BookingModal({ open, onClose, prefillWhen }: Props) {
     const e2 = validate(data.name, phoneDigits);
     setErrors(e2);
     if (Object.keys(e2).length > 0) return;
+
+    if (honeypot) { setStatus('done'); return; }
 
     setStatus('loading');
     try {
@@ -205,6 +208,16 @@ export function BookingModal({ open, onClose, prefillWhen }: Props) {
           </div>
         ) : (
           <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={e => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+            />
             <div className="field">
               <label>Ім'я</label>
               <input
